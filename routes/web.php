@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SignController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +15,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/sign', [SignController::class, 'index'])->name('sign.index');
+    Route::get('/bank', [BankController::class, 'index'])->name('bank.index');
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
